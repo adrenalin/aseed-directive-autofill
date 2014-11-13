@@ -1,0 +1,10 @@
+<div data-directive="autofill">
+  <div class="autofill-input">
+    <input ng-model="search" type="search" ng-keydown="keydown($event)" />
+  </div>
+  <div ng-show="results">
+    <ul>
+      <li ng-repeat="result in results" ng-bind="getLabel()" ng-click="selectItem()" ng-class="{selected: isSelected()}"></li>
+    </ul>
+  </div>
+</div>

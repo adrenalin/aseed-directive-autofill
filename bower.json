@@ -1,0 +1,30 @@
+{
+  "name": "aseed-autofill",
+  "version": "0.0.1",
+  "homepage": "https://github.com/adrenalin/aseed-directive-autofill",
+  "authors": [
+    "Arttu Manninen <arttu@kaktus.cc>"
+  ],
+  "description": "Autofill service for searches",
+  "main": "autofill.js",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "angularjs",
+    "aseed",
+    "search",
+    "autofill"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "aseed": "adrenalin/aseed"
+  }
+}

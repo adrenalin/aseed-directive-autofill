@@ -1,0 +1,20 @@
+[data-directive="autofill"] {
+  ul {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    list-style: none;
+    background-color: white;
+    border: solid 1px black;
+    
+    li {
+      display: block;
+      padding: 0.1em 0.5em;
+      
+      &.selected, &:hover {
+        background-color: #000088;
+        color: white;
+      }
+    }
+  }
+}
