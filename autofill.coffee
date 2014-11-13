@@ -153,6 +153,7 @@ define ['module', 'angular'], (module, angular) ->
                       continue
                     if v.toString().match(regexp)
                       $scope.results.push item
+                      break
                 
                 if $scope.results.length > maxCount then return
               

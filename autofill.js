@@ -125,6 +125,7 @@
                       }
                       if (v.toString().match(regexp)) {
                         $scope.results.push(item);
+                        break;
                       }
                     }
                   }
