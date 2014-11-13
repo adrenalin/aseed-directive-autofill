@@ -42,7 +42,7 @@ define ['module', 'angular'], (module, angular) ->
         selectedIndex = -1
         selectedItem = null
         
-        maxCount = 10
+        maxCount = 20
         match = ''
         
         if typeof $scope.show isnt 'undefined'
@@ -52,7 +52,8 @@ define ['module', 'angular'], (module, angular) ->
         if !maxCount then maxCount = 10
         
         # Regexp matcher
-        if typeof $scope.match isnt 'undefined' and $scope.match then match = $scope.match
+        if typeof $scope.match isnt 'undefined' and $scope.match
+          match = $scope.match
         
         $scope.results = []
         
@@ -145,7 +146,7 @@ define ['module', 'angular'], (module, angular) ->
             
             # Filter from a subset
             if typeof $scope.subset isnt 'undefined' and angular.isArray $scope.subset
-              regexp = new RegExp("#{match}term", 'i')
+              regexp = new RegExp("#{match}#{term}", 'i')
               
               # Do a one level iteration
               for i in [0...$scope.subset.length]
@@ -158,6 +159,7 @@ define ['module', 'angular'], (module, angular) ->
                   for k, v of item
                     if typeof v is 'object' or typeof v is 'function'
                       continue
+                    
                     if v.toString().match(regexp)
                       $scope.results.push item
                       break
