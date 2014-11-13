@@ -66,8 +66,10 @@
             }
             return obj.toString();
           };
+          prevSearch = '';
+          timer = null;
+          req = null;
           clearResults = function() {
-            var prevSearch, req, timer;
             $scope.results = [];
             $scope.search = '';
             prevSearch = '';
@@ -90,9 +92,6 @@
             }
             return clearResults();
           };
-          prevSearch = '';
-          timer = null;
-          req = null;
           search = function() {
             var fn;
             if (timer) {
@@ -148,7 +147,8 @@
                 if (selectedItem) {
                   returnItem(selectedItem);
                 }
-                return true;
+                e.preventDefault();
+                return false;
               case 27:
                 clearResults();
                 el.find('input')[0].blur();

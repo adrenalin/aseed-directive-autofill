@@ -92,6 +92,9 @@ define ['module', 'angular'], (module, angular) ->
           return obj.toString()
         
         # Clear result set
+        prevSearch = ''
+        timer = null
+        req = null
         clearResults = ->
           $scope.results = []
           $scope.search = ''
@@ -115,10 +118,6 @@ define ['module', 'angular'], (module, angular) ->
           
           # Clear results
           clearResults()
-        
-        prevSearch = ''
-        timer = null
-        req = null
         
         # Search for results
         search = ->
@@ -178,7 +177,8 @@ define ['module', 'angular'], (module, angular) ->
             when 13
               if selectedItem
                 returnItem(selectedItem)
-              return true
+              e.preventDefault()
+              return false
             
             when 27
               clearResults()
