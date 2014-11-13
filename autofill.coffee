@@ -34,18 +34,25 @@ define ['module', 'angular'], (module, angular) ->
         
         # Maximum amount of items displayed
         show: '@'
+        
+        # Position of matcing, either empty or '^' to mark the beginning of the string
+        match: '@'
       
       link: ($scope, el, attrs) ->
         selectedIndex = -1
         selectedItem = null
         
         maxCount = 10
+        match = ''
         
         if typeof $scope.show isnt 'undefined'
           maxCount = Number($scope.show)
         
         # Bulletproofing against NaN
         if !maxCount then maxCount = 10
+        
+        # Regexp matcher
+        if typeof $scope.match isnt 'undefined' and $scope.match then match = $scope.match
         
         $scope.results = []
         
@@ -138,7 +145,7 @@ define ['module', 'angular'], (module, angular) ->
             
             # Filter from a subset
             if typeof $scope.subset isnt 'undefined' and angular.isArray $scope.subset
-              regexp = new RegExp(term, 'i')
+              regexp = new RegExp("#{match}term", 'i')
               
               # Do a one level iteration
               for i in [0...$scope.subset.length]

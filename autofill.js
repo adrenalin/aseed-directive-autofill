@@ -22,18 +22,23 @@
           filter: '=',
           url: '@',
           label: '@',
-          show: '@'
+          show: '@',
+          match: '@'
         },
         link: function($scope, el, attrs) {
-          var clearResults, maxCount, prevSearch, req, returnItem, search, selectedIndex, selectedItem, setSelectedItem, timer;
+          var clearResults, match, maxCount, prevSearch, req, returnItem, search, selectedIndex, selectedItem, setSelectedItem, timer;
           selectedIndex = -1;
           selectedItem = null;
           maxCount = 10;
+          match = '';
           if (typeof $scope.show !== 'undefined') {
             maxCount = Number($scope.show);
           }
           if (!maxCount) {
             maxCount = 10;
+          }
+          if (typeof $scope.match !== 'undefined' && $scope.match) {
+            match = $scope.match;
           }
           $scope.results = [];
           $scope.getLabel = function() {
@@ -110,7 +115,7 @@
               }
               $scope.results = [];
               if (typeof $scope.subset !== 'undefined' && angular.isArray($scope.subset)) {
-                regexp = new RegExp(term, 'i');
+                regexp = new RegExp("" + match + "term", 'i');
                 for (i = _i = 0, _ref = $scope.subset.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
                   item = $scope.subset[i];
                   if (typeof item === 'string') {
