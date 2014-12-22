@@ -75,6 +75,9 @@ define ['module', 'angular'], (module, angular) ->
         if typeof @result is 'string' then return @result
         
         if typeof $scope.label isnt 'undefined' and $scope.label
+          if typeof @result[$scope.label] is 'function'
+            return @result[$scope.label]()
+          
           return @result[$scope.label]
         
         # Use heuristics for generating a label
@@ -209,11 +212,16 @@ define ['module', 'angular'], (module, angular) ->
         timer = $timeout fn, 500
       
       focusOnNextField = (d, level = 0) ->
+        console.log d
         if d.localName is 'form' or level > 10
+          console.log 'prevent too deep DOM searches'
           return
         
         unless d.length
+          console.log 'no parents found'
           return
+        
+        console.log 'search level', level
         
         wrapper = d.next()
         
@@ -221,6 +229,8 @@ define ['module', 'angular'], (module, angular) ->
         
         while wrapper and wrapper.length and i < 100
           inputs = wrapper.find('input, select, textarea')
+          console.log wrapper, level, i, inputs.length
+          console.log wrapper.toString()
           
           if inputs.length
             inputs.get(0).trigger('focus')

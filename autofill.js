@@ -52,6 +52,9 @@
               return this.result;
             }
             if (typeof $scope.label !== 'undefined' && $scope.label) {
+              if (typeof this.result[$scope.label] === 'function') {
+                return this.result[$scope.label]();
+              }
               return this.result[$scope.label];
             }
             prop = ['title', 'name', 'label'];
@@ -189,16 +192,22 @@
             if (level == null) {
               level = 0;
             }
+            console.log(d);
             if (d.localName === 'form' || level > 10) {
+              console.log('prevent too deep DOM searches');
               return;
             }
             if (!d.length) {
+              console.log('no parents found');
               return;
             }
+            console.log('search level', level);
             wrapper = d.next();
             i = 0;
             while (wrapper && wrapper.length && i < 100) {
               inputs = wrapper.find('input, select, textarea');
+              console.log(wrapper, level, i, inputs.length);
+              console.log(wrapper.toString());
               if (inputs.length) {
                 inputs.get(0).trigger('focus');
                 return;
