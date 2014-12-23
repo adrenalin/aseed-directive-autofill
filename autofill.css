@@ -1,15 +1,22 @@
-[data-directive="autofill"] ul {
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  list-style: none;
-  background-color: white;
-  border: solid 1px black; }
-  [data-directive="autofill"] ul li {
-    display: block;
-    padding: 0.1em 0.5em; }
-    [data-directive="autofill"] ul li.selected, [data-directive="autofill"] ul li:hover {
-      background-color: #000088;
-      color: white; }
+[data-directive="autofill"] {
+  position: relative; }
+  [data-directive="autofill"] label {
+    margin: 0; }
+  [data-directive="autofill"] ul {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    list-style: none;
+    background-color: white;
+    border: solid 1px black;
+    left: 0;
+    right: 0;
+    z-index: 10000; }
+    [data-directive="autofill"] ul li {
+      display: block;
+      padding: 0.1em 0.5em; }
+      [data-directive="autofill"] ul li.selected, [data-directive="autofill"] ul li:hover {
+        background-color: #000088;
+        color: white; }
 
 /*# sourceMappingURL=autofill.css.map */
