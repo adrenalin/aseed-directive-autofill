@@ -264,8 +264,20 @@
           };
           $scope.$watch('bindModel', updater, true);
           el.find('input').on('blur', function(e) {
+            var fn;
             $scope.results = [];
-            return updater();
+            updater();
+            if (!$(this).val()) {
+              clearResults();
+              fn = function() {
+                if (typeof $scope.callback === 'function') {
+                  return $scope.callback(null, null);
+                } else {
+                  return $scope.bindModel = null;
+                }
+              };
+              return $timeout(fn, 50);
+            }
           });
           $scope.selectItem = function() {
             returnItem(this.result);

@@ -294,6 +294,16 @@ define ['module', 'angular'], (module, angular) ->
       el.find('input').on 'blur', (e) ->
         $scope.results = []
         updater()
+        
+        unless $(this).val()
+          clearResults()
+          
+          fn = ->
+            if typeof $scope.callback is 'function'
+              $scope.callback(null, null)
+            else
+              $scope.bindModel = null
+          $timeout fn, 50
       
       # Select an item by clicking on it
       $scope.selectItem = ->
